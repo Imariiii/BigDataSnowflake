@@ -31,6 +31,7 @@ SELECT DISTINCT
 FROM mock_data m
 WHERE m.supplier_country IS NOT NULL ON CONFLICT (country_name) DO NOTHING;
 
+
 --cities
 INSERT INTO cities (
     city_name
@@ -47,6 +48,7 @@ SELECT DISTINCT
     m.supplier_city
 FROM mock_data m
 WHERE m.supplier_city IS NOT NULL ON CONFLICT (city_name) DO NOTHING;
+
 
 --dates
 INSERT INTO dates (
@@ -72,6 +74,7 @@ SELECT DISTINCT
     m.product_expiry_date
 FROM mock_data m
 WHERE m.product_expiry_date IS NOT NULL ON CONFLICT (date_value) DO NOTHING;
+
 
 --pets
 INSERT INTO pet_types (
@@ -114,6 +117,7 @@ JOIN pet_types pt ON m.customer_pet_type = pt.pet_type_name
 JOIN pet_breeds pb ON m.customer_pet_breed = pb.pet_breed_name
 JOIN pet_categories pc ON m.pet_category = pc.pet_category_name;
 
+
 --customers
 INSERT INTO customers (
     customer_first_name, 
@@ -142,6 +146,7 @@ JOIN pets p ON m.customer_pet_name = p.pet_name
     AND pc.pet_category_id = p.pet_category_id
 JOIN countries c ON m.customer_country = c.country_name;
 
+
 --sellers
 INSERT INTO sellers (
     seller_first_name, 
@@ -158,6 +163,7 @@ SELECT DISTINCT
     m.seller_postal_code
 FROM mock_data m
 JOIN countries c ON m.seller_country = c.country_name;
+
 
 --stores
 INSERT INTO stores (
@@ -181,6 +187,7 @@ FROM mock_data m
 JOIN cities ci ON m.store_city = ci.city_name
 JOIN countries c ON m.store_country = c.country_name;
 
+
 --suppliers
 INSERT INTO suppliers (
     supplier_name, 
@@ -202,6 +209,7 @@ SELECT DISTINCT
 FROM mock_data m
 JOIN cities ci ON m.supplier_city = ci.city_name
 JOIN countries c ON m.supplier_country = c.country_name;
+
 
 --products
 INSERT INTO product_names (
@@ -295,6 +303,7 @@ JOIN product_materials pm ON m.product_material = pm.product_material_name
 JOIN suppliers s ON m.supplier_name = s.supplier_name AND m.supplier_contact = s.supplier_contact
 JOIN dates dr ON m.product_release_date = dr.date_value
 JOIN dates de ON m.product_expiry_date = de.date_value;
+
 
 -- sales 
 INSERT INTO sales (
